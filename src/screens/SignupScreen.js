@@ -17,7 +17,7 @@ class SignupScreen extends React.Component {
         </Text>
         <TextInput style={styles.input} value="Email Address" />
         <TextInput style={styles.input} value="Password" />
-        <TouchableHighlight style={styles.button} onPress={() => {}} underlayColor="#ef94a4">
+        <TouchableHighlight style={styles.button} onPress={() => {this.props.navigation.navigate('Login')}} underlayColor="#ef94a4">
           <Text style={styles.buttonTitle}>送信する</Text>
         </TouchableHighlight>
       </View>
@@ -35,17 +35,20 @@ const styles = StyleSheet.create({
   input: {
     backgroundColor: '#eee',
     height: 48,
-    width: 360,
     marginBottom: 16,
     borderWidth: 1,
     borderColor: '#DDD',
-    padding: 8,
+    padding: 10,
     fontSize: 18,
+    alignItems: 'center',
+    marginLeft: 20,
+    marginRight: 20,
   },
   title: {
     fontSize: 28,
     alignSelf: 'center',
     marginBottom: 24,
+    marginTop: 20,
   },
   button: {
     backgroundColor: '#e46d82',
