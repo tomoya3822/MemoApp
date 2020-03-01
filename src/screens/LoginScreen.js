@@ -14,17 +14,14 @@ class LoginScreen extends React.Component {
     password: '',
   }
   handleSubmit(){
-    const firebaseConfig = {
-      apiKey: "AIzaSyC-6cHPeYndv1u3HIX37N4CiFKTzwbd-l8",
-      authDomain: "memoapp-2278a.firebaseapp.com",
-      databaseURL: "https://memoapp-2278a.firebaseio.com",
-      projectId: "memoapp-2278a",
-      storageBucket: "memoapp-2278a.appspot.com",
-      messagingSenderId: "533958976107",
-      appId: "1:533958976107:web:0168168ae342a04e0a872e",
-      measurementId: "G-1F01BVVV2B"
-    };
-    firebase.initializeApp(firebaseConfig);
+    firebase.auth().signInWithEmailAndPassword(email, password)
+    .then((user) => {
+      console.log('success', user);
+      this.props.navigation.navigate('Home');
+    })
+    .catch((error) => {
+      console.log('error', error);
+    });
   }
 
   render() {
