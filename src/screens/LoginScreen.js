@@ -14,10 +14,10 @@ class LoginScreen extends React.Component {
     password: '',
   }
   handleSubmit(){
-    firebase.auth().signInWithEmailAndPassword(email, password)
+    firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password)
     .then((user) => {
       console.log('success', user);
-      this.props.navigation.navigate('Home');
+      this.props.navigation.navigate('Home', { currentUser: user});
     })
     .catch((error) => {
       console.log('error', error);
@@ -30,24 +30,9 @@ class LoginScreen extends React.Component {
         <Text style={styles.title}>
           ログイン
         </Text>
-        <TextInput
-          style={styles.input}
-          value={this.state.email}
-          onChangeText={(text) => {this.setState({ email: text })}}
-          autoCapitalize="none"
-          autoCorrect="false"
-          placeholder='Email Address'
-        />
-        <TextInput
-          style={styles.input}
-          value={this.state.password}
-          onChangeText={(text) => {this.setState({ password: text })}}
-          autoCapitalize = "none"
-          autoCorrect = "false"
-          placeholder='Password'
-          secureTextEntry
-        />
-        <TouchableHighlight style={styles.button} onPress={() => { this.handleSubmit.bind(this) }} underlayColor="#ef94a4">
+        <TextInput style={styles.input} value={this.state.email} onChangeText={(text) => {this.setState({ email: text }); }} autoCapitalize="none" autoCorrect={false} placeholder="Email Address"/>
+        <TextInput style={styles.input} value={this.state.password} onChangeText={(text) => {this.setState({ password: text }); }} autoCapitalize = "none" autoCorrect = {false} placeholder="Password" secureTextEntry/>
+        <TouchableHighlight style={styles.button} onPress={this.handleSubmit.bind(this)} underlayColor="#ef94a4">
           <Text style={styles.buttonTitle}>ログインする</Text>
         </TouchableHighlight>
       </View>
